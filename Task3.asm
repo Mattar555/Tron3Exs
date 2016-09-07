@@ -169,6 +169,6 @@ Carry_HP_ISR:
 WriteHigh1:                      ; This means HLVH = 1
     BSF    PORTB,CCP2_PORTB      ; Set the relevant pin of PORTB
     CLRF   HLVH                  ; Enter the WriteLow Routine next time
-    goto   Restore1
+    goto   Restore1              ; HELLO
     
     END
