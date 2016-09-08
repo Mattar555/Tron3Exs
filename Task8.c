@@ -36,21 +36,19 @@ void hpISR(void)
     {
         CCPR2 += ADDER;
         PIR2bits.CCP2IF = 0;
-        /* At this stage we do not know for sure if RC3 is high or low */
-        /* We set it low because on the transition from low to high we */
-        /* translate the parallel in data to serial out to the MCU PORTC(4)*/
-        PORTCbits.RC3 = 0;
         /* Read the incoming data */
         PORTCbits.RC2 = 0;
-        /* On the transition get the data in serial format */
-        PORTCbits.RC3 = 1;
+        /* Delay to ensure data is loaded */
+        delay3CC();
         /* Write the data to PORTC(4) */
-        PORTCbits.RC2 = 1;  
+        PORTCbits.RC2 = 1; 
+        /* Delay to shift all 8 bits */
+        delay10CC(); 
         /* Put the data on PORTC(4) in x */
-       // x = getcSPI();
+        x = getcSPI();
         /* The data is now located in PORTC(5). Output that to the serial in */
         /* Parallel out register */
-        //putcSPI(x);
+        putcSPI(x);
     }
    
 }
