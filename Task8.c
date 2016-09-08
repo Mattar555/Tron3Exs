@@ -11,7 +11,7 @@
 #include <p18f452.h>
 #include "configReg.h"
 
-#define ADDER   100
+#define ADDER   33333
 
 void spiCon(void);
 void intCon(void);
